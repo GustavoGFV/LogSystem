@@ -5,6 +5,8 @@ using Logger.Dto.Validation;
 using Logger.Interface;
 using Logger.Services;
 using Logger.Validation;
+using Logger.Enum;
+using Logger.Resources;
 
 namespace Logger.Controllers
 {
@@ -49,7 +51,19 @@ namespace Logger.Controllers
                 {
                     ErrorCode = e.ParamName,
                     Message = e.Message,
-                    Project = "SI Logger",
+                    Project = "Logger",
+                    ReportDate = DateTime.Now,
+                    StackTrace = e.StackTrace
+                });
+                throw;
+            }
+            catch (Exception e)
+            {
+                _loggerService.Create(new LogDto()
+                {
+                    ErrorCode = InternalErrorEnum.Create.ToString(),
+                    Message = e.Message,
+                    Project = "Logger",
                     ReportDate = DateTime.Now,
                     StackTrace = e.StackTrace
                 });
@@ -63,15 +77,16 @@ namespace Logger.Controllers
             try
             {
                 var logs = _loggerService.Get();
+                if (logs == null) return NotFound();
                 return Ok(logs);
             }
             catch (Exception e)
             {
                 _loggerService.Create(new LogDto()
                 {
-                    ErrorCode = "Get All",
+                    ErrorCode = InternalErrorEnum.GetAll.ToString(),
                     Message = e.Message,
-                    Project = "SI Logger",
+                    Project = "Logger",
                     ReportDate = DateTime.Now,
                     StackTrace = e.StackTrace
                 });
@@ -95,6 +110,7 @@ namespace Logger.Controllers
                 }
 
                 var log = _loggerService.Get(id);
+                if (log == null) return NotFound(string.Format(Error.IDNotFound, id));
                 return Ok(log);
             }
             catch (ArgumentException e)
@@ -103,7 +119,7 @@ namespace Logger.Controllers
                 {
                     ErrorCode = e.ParamName,
                     Message = e.Message,
-                    Project = "SI Logger",
+                    Project = "Logger",
                     ReportDate = DateTime.Now,
                     StackTrace = e.StackTrace
                 });
@@ -113,9 +129,9 @@ namespace Logger.Controllers
             {
                 _loggerService.Create(new LogDto()
                 {
-                    ErrorCode = "GetId",
+                    ErrorCode = InternalErrorEnum.GetID.ToString(),
                     Message = e.Message,
-                    Project = "SI Logger",
+                    Project = "Logger",
                     ReportDate = DateTime.Now,
                     StackTrace = e.StackTrace
                 });
@@ -139,6 +155,7 @@ namespace Logger.Controllers
                 }
 
                 var logs = _loggerService.Get(date);
+                if (logs == null) return NotFound(string.Format(Error.DateNotFound, date));
                 return Ok(logs);
 
             }
@@ -148,7 +165,7 @@ namespace Logger.Controllers
                 {
                     ErrorCode = e.ParamName,
                     Message = e.Message,
-                    Project = "SI Logger",
+                    Project = "Logger",
                     ReportDate = DateTime.Now,
                     StackTrace = e.StackTrace
                 });
@@ -158,9 +175,9 @@ namespace Logger.Controllers
             {
                 _loggerService.Create(new LogDto()
                 {
-                    ErrorCode = "GetDate",
+                    ErrorCode = InternalErrorEnum.GetDate.ToString(),
                     Message = e.Message,
-                    Project = "SI Logger",
+                    Project = "Logger",
                     ReportDate = DateTime.Now,
                     StackTrace = e.StackTrace
                 });
@@ -184,6 +201,7 @@ namespace Logger.Controllers
                 }
 
                 var logs = _loggerService.Get(code);
+                if (logs == null) return NotFound(string.Format(Error.CodeNotFound, code));
                 return Ok(logs);
             }
             catch (ArgumentException e)
@@ -192,7 +210,7 @@ namespace Logger.Controllers
                 {
                     ErrorCode = e.ParamName,
                     Message = e.Message,
-                    Project = "SI Logger",
+                    Project = "Logger",
                     ReportDate = DateTime.Now,
                     StackTrace = e.StackTrace
                 });
@@ -202,9 +220,9 @@ namespace Logger.Controllers
             {
                 _loggerService.Create(new LogDto()
                 {
-                    ErrorCode = "GetCode",
+                    ErrorCode = InternalErrorEnum.GetCode.ToString(),
                     Message = e.Message,
-                    Project = "SI Logger",
+                    Project = "Logger",
                     ReportDate = DateTime.Now,
                     StackTrace = e.StackTrace
                 });
@@ -228,6 +246,7 @@ namespace Logger.Controllers
                 }
 
                 var logs = _loggerService.Get(date, code);
+                if (logs == null) return NotFound(string.Format(Error.CodeDateNotFound, code, date));
                 return Ok(logs);
             }
             catch (ArgumentException e)
@@ -236,7 +255,7 @@ namespace Logger.Controllers
                 {
                     ErrorCode = e.ParamName,
                     Message = e.Message,
-                    Project = "SI Logger",
+                    Project = "Logger",
                     ReportDate = DateTime.Now,
                     StackTrace = e.StackTrace
                 });
@@ -246,9 +265,9 @@ namespace Logger.Controllers
             {
                 _loggerService.Create(new LogDto()
                 {
-                    ErrorCode = "GetDateCode",
+                    ErrorCode = InternalErrorEnum.GetCodeDate.ToString(),
                     Message = e.Message,
-                    Project = "SI Logger",
+                    Project = "Logger",
                     ReportDate = DateTime.Now,
                     StackTrace = e.StackTrace
                 });

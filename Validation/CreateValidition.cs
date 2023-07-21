@@ -1,6 +1,8 @@
 ﻿using Castle.Core.Resource;
 using FluentValidation;
 using Logger.Dto;
+using Logger.Enum;
+using Logger.Resources;
 
 namespace Logger.Validation
 {
@@ -8,13 +10,25 @@ namespace Logger.Validation
     {
         public CreateValidition()
         {
-            RuleFor(log => log.Id).Null().WithErrorCode("Id Preenchido!");
-            RuleFor(log => log.Project).NotNull().WithErrorCode("Projeto Não Preenchido");
-            RuleFor(log => log.ErrorCode).NotNull().WithErrorCode("Sem Código de Erro");
-            RuleFor(log => log.StackTrace).NotNull().WithErrorCode("Sem StackTrace");
-            RuleFor(log => log.ReportDate).NotNull().LessThan(DateTime.MaxValue)
-                .GreaterThan(DateTime.MinValue)
-                .WithErrorCode("Data Invalida");
+            RuleFor(log => log.Id).Null().WithErrorCode(ValidationErrorEnum.Id.ToString())
+                 .WithMessage(Error.IDNotNull);
+
+            RuleFor(log => log.Project).NotNull().WithErrorCode(ValidationErrorEnum.Project.ToString())
+                 .WithMessage(Error.ProjectNull);
+
+            RuleFor(log => log.ErrorCode).NotNull().WithErrorCode(ValidationErrorEnum.ErrorCode.ToString())
+                 .WithMessage(Error.CodeNull);
+
+            RuleFor(log => log.StackTrace).NotNull().WithErrorCode(ValidationErrorEnum.StackTrace.ToString())
+                 .WithMessage(Error.StackTraceNull);
+
+            RuleFor(log => log.ReportDate).NotNull()
+                 .WithMessage(Error.DateNull);
+
+            RuleFor(log => log.ReportDate).LessThan(DateTime.MaxValue)
+                 .GreaterThan(DateTime.MinValue)
+                 .WithErrorCode(ValidationErrorEnum.ReportDate.ToString())
+                 .WithMessage(log => string.Format(Error.DateInvalid, log.ReportDate));
         }
     }
 }
