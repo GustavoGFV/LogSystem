@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Logger.Dto;
 using Logger.Dto.Validation;
 using Logger.Interface;
-using Logger.Services;
 using Logger.Validation;
 using Logger.Enum;
 using Logger.Resources;

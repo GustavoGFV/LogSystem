@@ -1,5 +1,4 @@
-﻿using Castle.Core.Resource;
-using FluentValidation;
+﻿using FluentValidation;
 using Logger.Dto;
 using Logger.Enum;
 using Logger.Resources;
