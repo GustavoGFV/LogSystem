@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CodeDateNotFound" xml:space="preserve">
-    <value>No records were found with Code: {0} on Date: {1}.</value>
+    <value>No records were found with Code: {0} between Date: {1} - {2}.</value>
   </data>
   <data name="CodeNotFound" xml:space="preserve">
     <value>No records with Code: {0} were found in the database.</value>
@@ -130,10 +130,13 @@
     <value>The date sent is invalid: {0}.</value>
   </data>
   <data name="DateNotFound" xml:space="preserve">
-    <value>No records were found for Date: {0} in the database.</value>
+    <value>No records were found between the Dates: {0} - {1}, in the database.</value>
   </data>
   <data name="DateNull" xml:space="preserve">
     <value>The date is null.</value>
+  </data>
+  <data name="DatePeriodInvalid" xml:space="preserve">
+    <value>The date range is invalid, Start Date: {0}, End Date: {1}.</value>
   </data>
   <data name="IDNotFound" xml:space="preserve">
     <value>ID: {0} was not found in the database.</value>

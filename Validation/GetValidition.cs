@@ -16,13 +16,25 @@ namespace Logger.Validation
             });
             RuleSet("Date", () =>
             {
-                RuleFor(log => log.Date).NotNull().WithErrorCode(ValidationErrorEnum.GetDate.ToString())
+                RuleFor(log => log.InitialDate).NotNull().WithErrorCode(ValidationErrorEnum.GetDate.ToString())
                 .WithMessage(Error.DateNull);
 
-                RuleFor(log => log.Date).LessThan(DateTime.MaxValue)
+                RuleFor(log => log.FinalDate).NotNull().WithErrorCode(ValidationErrorEnum.GetDate.ToString())
+                .WithMessage(Error.DateNull);
+
+                RuleFor(log => log.InitialDate).LessThan(DateTime.MaxValue)
                 .GreaterThan(DateTime.MinValue)
                 .WithErrorCode(ValidationErrorEnum.GetDate.ToString())
-                .WithMessage(log => string.Format(Error.DateInvalid, log.Date));
+                .WithMessage(log => string.Format(Error.DateInvalid, log.InitialDate));
+
+                RuleFor(log => log.FinalDate).LessThan(DateTime.MaxValue)
+                .GreaterThan(DateTime.MinValue)
+                .WithErrorCode(ValidationErrorEnum.GetDate.ToString())
+                .WithMessage(log => string.Format(Error.DateInvalid, log.FinalDate));
+
+                RuleFor(log => log.InitialDate).GreaterThan(log => log.FinalDate)
+                .WithErrorCode(ValidationErrorEnum.GetDate.ToString())
+                .WithMessage(log => string.Format(Error.DatePeriodInvalid, log.InitialDate, log.FinalDate));
             });
             RuleSet("Id", () =>
             {

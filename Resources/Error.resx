@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CodeDateNotFound" xml:space="preserve">
-    <value>Não foi encontrado registros com Código: {0} na Data: {1}.</value>
+    <value>Não foi encontrado registros com Código: {0} nas Datas: {1} - {2}.</value>
   </data>
   <data name="CodeNotFound" xml:space="preserve">
     <value>Não foi encontrado registros com Código: {0} no banco de dados.</value>
@@ -130,10 +130,13 @@
     <value>A data enviada é inválida: {0}.</value>
   </data>
   <data name="DateNotFound" xml:space="preserve">
-    <value>Não foi encontrado registros na Data: {0} no banco de dados.</value>
+    <value>Não foi encontrado registros nas Datas: {0} - {1}, no banco de dados.</value>
   </data>
   <data name="DateNull" xml:space="preserve">
     <value>A data está nula.</value>
+  </data>
+  <data name="DatePeriodInvalid" xml:space="preserve">
+    <value>O período de datas está inválida, Data Inicial: {0}, Data Final: {1}.</value>
   </data>
   <data name="IDNotFound" xml:space="preserve">
     <value>Não foi encontrado o ID: {0} no banco de dados.</value>

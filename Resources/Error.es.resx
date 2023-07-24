@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CodeDateNotFound" xml:space="preserve">
-    <value>No se encontraron registros con Código: {0} en Fecha: {1}.</value>
+    <value>No se encontraron registros con Código: {0} en Fechas: {1} - {2}.</value>
   </data>
   <data name="CodeNotFound" xml:space="preserve">
     <value>No se encontraron registros con Código: {0} en la base de datos.</value>
@@ -130,10 +130,13 @@
     <value>La fecha de envío no es válida: {0}.</value>
   </data>
   <data name="DateNotFound" xml:space="preserve">
-    <value>No se encontraron registros para Fecha: {0} en la base de datos.</value>
+    <value>No se encontraron registros en las Fechas: {0} - {1}, en la base de datos.</value>
   </data>
   <data name="DateNull" xml:space="preserve">
     <value>La fecha es nula.</value>
+  </data>
+  <data name="DatePeriodInvalid" xml:space="preserve">
+    <value>El intervalo de fechas no es válido, fecha de inicio: {0}, fecha de finalización: {1}.</value>
   </data>
   <data name="IDNotFound" xml:space="preserve">
     <value>ID: {0} no se encontró en la base de datos.</value>

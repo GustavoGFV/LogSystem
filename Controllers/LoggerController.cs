@@ -138,12 +138,17 @@ namespace Logger.Controllers
             }
         }
 
-        [HttpGet("Get/Date/{date}")]
-        public IActionResult GetByDate([FromRoute] DateTime date)
+        [HttpGet("Get/Date/{initialDate}&{finalDate}")]
+        public IActionResult GetByDate([FromRoute] DateTime initialDate,
+            [FromRoute] DateTime finalDate)
         {
             try
             {
-                var result = _getValidiation.Validate(new GetLog() { Date = date },
+                var result = _getValidiation.Validate(new GetLog()
+                {
+                    InitialDate = initialDate,
+                    FinalDate = finalDate
+                },
                     options => options.IncludeRuleSets(dateValidation));
                 if (!result.IsValid)
                 {
@@ -153,8 +158,8 @@ namespace Logger.Controllers
                     }
                 }
 
-                var logs = _loggerService.Get(date);
-                if (logs == null) return NotFound(string.Format(Error.DateNotFound, date));
+                var logs = _loggerService.Get(initialDate, finalDate);
+                if (logs == null) return NotFound(string.Format(Error.DateNotFound, initialDate, finalDate));
                 return Ok(logs);
 
             }
@@ -229,12 +234,18 @@ namespace Logger.Controllers
             }
         }
 
-        [HttpGet("Get/{date}&{code}")]
-        public IActionResult GetByFilter([FromRoute] DateTime date, [FromRoute] string code)
+        [HttpGet("Get/Date/{initialDate}&{finalDate}/Error/{code}")]
+        public IActionResult GetByFilter([FromRoute] DateTime initialDate,
+            [FromRoute] DateTime finalDate, [FromRoute] string code)
         {
             try
             {
-                var result = _getValidiation.Validate(new GetLog() { Code = code, Date = date },
+                var result = _getValidiation.Validate(new GetLog()
+                {
+                    Code = code,
+                    InitialDate = initialDate,
+                    FinalDate = finalDate
+                },
                     options => options.IncludeRuleSets(codeValidation, dateValidation));
                 if (!result.IsValid)
                 {
@@ -244,8 +255,8 @@ namespace Logger.Controllers
                     }
                 }
 
-                var logs = _loggerService.Get(date, code);
-                if (logs == null) return NotFound(string.Format(Error.CodeDateNotFound, code, date));
+                var logs = _loggerService.Get(initialDate,finalDate, code);
+                if (logs == null) return NotFound(string.Format(Error.CodeDateNotFound, code, initialDate, finalDate));
                 return Ok(logs);
             }
             catch (ArgumentException e)

@@ -61,7 +61,7 @@ namespace Logger.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Não foi encontrado registros com Código: {0} na Data: {1}..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Não foi encontrado registros com Código: {0} nas Datas: {1} - {2}..
         /// </summary>
         public static string CodeDateNotFound {
             get {
@@ -97,7 +97,7 @@ namespace Logger.Resources {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Não foi encontrado registros na Data: {0} no banco de dados..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Não foi encontrado registros nas Datas: {0} - {1}, no banco de dados..
         /// </summary>
         public static string DateNotFound {
             get {
@@ -111,6 +111,15 @@ namespace Logger.Resources {
         public static string DateNull {
             get {
                 return ResourceManager.GetString("DateNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O período de datas está inválida, Data Inicial: {0}, Data Final: {1}..
+        /// </summary>
+        public static string DatePeriodInvalid {
+            get {
+                return ResourceManager.GetString("DatePeriodInvalid", resourceCulture);
             }
         }
         

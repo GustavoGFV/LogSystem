@@ -24,13 +24,17 @@ namespace Logger.Services
 
         public async Task<LogDto> Get(int id) => _mapper.Map<LogDto>(await _context.Log!.Where(i => i.Id == id).FirstOrDefaultAsync());
 
-        public async Task<List<LogDto>> Get(DateTime date) => _mapper.Map<List<LogDto>>(await _context.Log!.Where(i => i.ReportDate == date).ToListAsync());
+        public async Task<List<LogDto>> Get(DateTime initialDate, DateTime finalDate) =>
+            _mapper.Map<List<LogDto>>(await _context.Log!.Where(i =>
+            i.ReportDate >= initialDate &&
+            i.ReportDate <= finalDate).ToListAsync());
 
         public async Task<List<LogDto>> Get(string code) => _mapper.Map<List<LogDto>>(await _context.Log!.Where(i => i.ErrorCode == code).ToListAsync());
-        public async Task<List<LogDto>> Get(DateTime date, string code)
+        public async Task<List<LogDto>> Get(DateTime initialDate, DateTime finalDate, string code)
         {
             var query = from log in _context.Log!
-                        where log.ReportDate == date && log.ErrorCode == code
+                        where (log.ReportDate >= initialDate && log.ReportDate <= finalDate)
+                        && log.ErrorCode == code
                         select log;
 
             return _mapper.Map<List<LogDto>>(await query.ToListAsync());
