@@ -5,6 +5,10 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger", "Logger.csproj", "{919772D1-8317-4D12-9E63-16D902D0BF14}"
 EndProject
+		..\..\Logger-Web\logger-web\README.md = ..\..\Logger-Web\logger-web\README.md
+		..\..\Logger-Web\logger-web\tsconfig.app.json = ..\..\Logger-Web\logger-web\tsconfig.app.json
+		..\..\Logger-Web\logger-web\tsconfig.json = ..\..\Logger-Web\logger-web\tsconfig.json
+	EndProjectSection
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
